@@ -12,5 +12,6 @@ public class TheListener implements Listener {
     @EventHandler
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         Bukkit.broadcastMessage(event.getPlayer().getDisplayName() + " just executed command " + event.getMessage());
+        App.sendDiscordMessage(event.getPlayer().getDisplayName() + " just executed command " + event.getMessage());
     }
 }
