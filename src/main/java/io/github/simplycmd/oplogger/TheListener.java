@@ -1,9 +1,13 @@
 package io.github.simplycmd.oplogger;
 
+import java.awt.Color;
+
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+
+import io.github.simplycmd.oplogger.DiscordWebhook.EmbedObject;
 
 public class TheListener implements Listener {
     public TheListener(App plugin){
@@ -11,7 +15,10 @@ public class TheListener implements Listener {
     }
     @EventHandler
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        Bukkit.broadcastMessage(event.getPlayer().getDisplayName() + " just executed command " + event.getMessage());
-        App.sendDiscordMessage(event.getPlayer().getDisplayName() + " just executed command " + event.getMessage());
+        EmbedObject command = new EmbedObject();
+        command.setTitle("Command Executed!");
+        command.setDescription("**" + event.getPlayer().getDisplayName() + "** just executed command **" + event.getMessage() + " **");
+        command.setColor(Color.CYAN);
+        App.sendDiscordMessage(command);
     }
 }

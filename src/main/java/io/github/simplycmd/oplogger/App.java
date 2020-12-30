@@ -1,9 +1,12 @@
 package io.github.simplycmd.oplogger;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.bukkit.plugin.java.JavaPlugin;
+
+import io.github.simplycmd.oplogger.DiscordWebhook.EmbedObject;
 
 public class App extends JavaPlugin
 {
@@ -15,14 +18,20 @@ public class App extends JavaPlugin
 
         url = this.getConfig().getString("url");
 
+        EmbedObject enable = new EmbedObject();
+        enable.setTitle("OPlogger Enabled");
+        enable.setDescription("OPlogger is now enabled! Welcome!");
+        enable.setColor(Color.GREEN);
+        sendDiscordMessage(enable);
+
         getLogger().info("OPlogger is now enabled! Welcome!");
-        sendDiscordMessage("OPlogger is now enabled! Welcome!");
+
         new TheListener(this);
     }
 
-    public static void sendDiscordMessage(String message) {
+    public static void sendDiscordMessage(EmbedObject embed) {
         DiscordWebhook webhook = new DiscordWebhook(url);
-        webhook.setContent(message);
+        webhook.addEmbed(embed);
         try {
             webhook.execute();
         } catch (MalformedURLException e) {
@@ -36,7 +45,12 @@ public class App extends JavaPlugin
 
     @Override
     public void onDisable() {
+        EmbedObject disable = new EmbedObject();
+        disable.setTitle("OPlogger Disabled");
+        disable.setDescription("OPlogger is now disabled. Goodbye!");
+        disable.setColor(Color.RED);
+        sendDiscordMessage(disable);
+
         getLogger().info("OPlogger is now disabled. Goodbye!");
-        sendDiscordMessage("OPlogger is now disabled. Welcome!");
     }
 }
