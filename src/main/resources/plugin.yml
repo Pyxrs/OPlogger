@@ -1,0 +1,3 @@
+main: io.github.simplycmd.oplogger.App
+name: OPlogger
+version: 1.0.0
