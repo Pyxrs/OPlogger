@@ -1,2 +1,5 @@
 # Insert your Discord webhook URL below
-url: "PUT YOUR WEBHOOK URL HERE"
+URL: "PUT YOUR WEBHOOK URL HERE"
+
+# If true, this plugin will ignore commands run by people that are not opped
+Only log OPs: true

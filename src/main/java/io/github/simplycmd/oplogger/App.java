@@ -11,12 +11,14 @@ import io.github.simplycmd.oplogger.DiscordWebhook.EmbedObject;
 public class App extends JavaPlugin
 {
     private static String url;
+    public static Boolean exclusivelogging;
     
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
 
-        url = this.getConfig().getString("url");
+        url = this.getConfig().getString("URL");
+        exclusivelogging = this.getConfig().getBoolean("Only log OPs");
 
         EmbedObject enable = new EmbedObject();
         enable.setTitle("OPlogger Enabled");
