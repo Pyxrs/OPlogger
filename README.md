@@ -3,6 +3,7 @@ A very simple Spigot plugin that records commands executed by ops and reports th
 
 ## Where to download
 * [Spigot](https://www.spigotmc.org/resources/oplogger.87269/)
+* [Bukkit](https://dev.bukkit.org/projects/oplogger)
 * [Curseforge (May still be under review)](https://www.curseforge.com/minecraft/bukkit-plugins/oplogger)
 
 ## Thanks to
