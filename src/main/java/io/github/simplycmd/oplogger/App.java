@@ -11,14 +11,16 @@ import io.github.simplycmd.oplogger.DiscordWebhook.EmbedObject;
 public class App extends JavaPlugin
 {
     private static String url;
-    public static Boolean exclusivelogging;
+    public static Boolean exclusive_logging;
+    public static String command_blacklist;
     
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
 
         url = this.getConfig().getString("URL");
-        exclusivelogging = this.getConfig().getBoolean("Only log OPs");
+        exclusive_logging = this.getConfig().getBoolean("Only log OPs");
+        command_blacklist = this.getConfig().getString("Command Blacklist");
 
         EmbedObject enable = new EmbedObject();
         enable.setTitle("OPlogger Enabled");
@@ -28,7 +30,7 @@ public class App extends JavaPlugin
 
         getLogger().info("OPlogger is now enabled! Welcome!");
 
-        new TheListener(this);
+        new CommandPreprocessListener(this);
     }
 
     public static void sendDiscordMessage(EmbedObject embed) {
@@ -38,7 +40,6 @@ public class App extends JavaPlugin
             webhook.execute();
         } catch (MalformedURLException e) {
             System.out.println("[MinecraftDiscordWebhook] Invalid webhook URL");
-
         }
         catch (IOException e) {
             e.printStackTrace();
